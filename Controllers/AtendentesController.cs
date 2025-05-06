@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebPDV.Data;
 using WebPDV.Models;
 
@@ -6,74 +7,74 @@ namespace WebPDV.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AtendentesController : ControllerBase
+    public class VendedorControllers : ControllerBase
     {
         private readonly AplicacaoDbContext _context;
 
-        public AtendentesController(AplicacaoDbContext context)
+        public VendedorControllers(AplicacaoDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/atendentes
+        // GET: api/Vendedors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Atendente>>> ObterTodos()
+        public async Task<ActionResult<IEnumerable<Vendedor>>> ObterTodos()
         {
-            return Ok(await _context.Atendentes.ToListAsync());
+            return Ok(await _context.vendedores.ToListAsync());
         }
 
-        // GET: api/atendentes/{id}
+        // GET: api/Vendedors/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Atendente>> ObterPorId(int id)
+        public async Task<ActionResult<Vendedor>> ObterPorId(int id)
         {
-            var atendente = await _context.Atendentes.FindAsync(id);
-            if (atendente == null) return NotFound();
-            return Ok(atendente);
+            var Vendedor = await _context.vendedores.FindAsync(id);
+            if (Vendedor == null) return NotFound();
+            return Ok(Vendedor);
         }
 
-        // POST: api/atendentes
+        // POST: api/Vendedors
         [HttpPost]
-        public async Task<ActionResult<Atendente>> Criar(Atendente atendente)
+        public async Task<ActionResult<Vendedor>> Criar(Vendedor Vendedor)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            _context.Atendentes.Add(atendente);
+            _context.vendedores.Add(Vendedor);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = atendente.Id }, atendente);
+            return CreatedAtAction(nameof(ObterPorId), new { id = Vendedor.IdVendedor }, Vendedor);
         }
 
-        // PUT: api/atendentes/{id}
+        // PUT: api/Vendedors/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Atualizar(int id, Atendente atendente)
+        public async Task<IActionResult> Atualizar(int id, Vendedor Vendedor)
         {
-            if (id != atendente.Id) return BadRequest();
-            _context.Entry(atendente).State = EntityState.Modified;
+            if (id != Vendedor.IdVendedor) return BadRequest();
+            _context.Entry(Vendedor).State = EntityState.Modified;
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AtendenteExiste(id)) return NotFound();
+                if (!VendedorExiste(id)) return NotFound();
                 throw;
             }
             return NoContent();
         }
 
-        // DELETE: api/atendentes/{id}
+        // DELETE: api/Vendedors/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletar(int id)
         {
-            var atendente = await _context.Atendentes.FindAsync(id);
-            if (atendente == null) return NotFound();
-            _context.Atendentes.Remove(atendente);
+            var Vendedor = await _context.vendedores.FindAsync(id);
+            if (Vendedor == null) return NotFound();
+            _context.vendedores.Remove(Vendedor);
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        // Método para verificar se o atendente existe.
-        private bool AtendenteExiste(int id)
+        // Método para verificar se o Vendedor existe.
+        private bool VendedorExiste(int id)
         {
-            return _context.Atendentes.Any(e => e.Id == id);
+            return _context.vendedores.Any(e => e.IdVendedor == id);
         }
     }
 }
