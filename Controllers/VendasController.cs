@@ -33,7 +33,7 @@ namespace WebPDV.Controllers
         {
             var venda = await _context.Vendas
                 .Include(v => v.ItensDaVenda)
-                .FirstOrDefaultAsync(v => v.NumeroDeSequencai == id);
+                .FirstOrDefaultAsync(v => v.NumeroDeSequencia == id);
 
             if (venda == null)
                 return NotFound();
@@ -66,23 +66,53 @@ namespace WebPDV.Controllers
         }*/
 
         // POST: api/vendas
-        [HttpPost]
-        public async Task<ActionResult<Venda>> Criar(Venda venda)
+      [HttpPost]
+public async Task<ActionResult<Venda>> Criar(Venda venda)
+{
+    if (!ModelState.IsValid)
+        return BadRequest(ModelState);
+
+    // Lista final de itens prontos para adicionar
+    var itensValidados = new List<Venda.ItemDaVenda>();
+
+    foreach (var item in venda.ItensDaVenda)
+    {
+        var produto = await _context.produtos.FindAsync(item.ProdutoId);
+
+        if (produto == null)
+            return BadRequest($"Produto com ID {item.ProdutoId} não encontrado.");
+
+        if (produto.QuantidedeDeEstoque < item.Quantidade)
+            return BadRequest($"Estoque insuficiente para o produto {produto.NomeProduto}");
+
+        // Cria o item com o produto real do banco
+        var itemVenda = new Venda.ItemDaVenda
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            ProdutoId = produto.CodigoID,
+            Produto = produto,
+            Quantidade = item.Quantidade
+        };
 
-            _context.Vendas.Add(venda);
-            await _context.SaveChangesAsync();
+        itensValidados.Add(itemVenda);
 
-            return CreatedAtAction(nameof(ObterPorId), new { id = venda.NumeroDeSequencai }, venda);
-        }
+        // Reduz estoque
+        produto.QuantidedeDeEstoque -= item.Quantidade;
+    }
+
+    // Substitui os itens enviados por aqueles validados
+    venda.ItensDaVenda = itensValidados;
+
+    _context.Vendas.Add(venda);
+    await _context.SaveChangesAsync();
+
+    return CreatedAtAction(nameof(ObterPorId), new { id = venda.NumeroDeSequencia }, venda);
+}
 
         // PUT: api/vendas/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Venda venda)
         {
-            if (id != venda.NumeroDeSequencai)
+            if (id != venda.NumeroDeSequencia)
                 return BadRequest();
 
             _context.Entry(venda).State = EntityState.Modified;
@@ -119,7 +149,7 @@ namespace WebPDV.Controllers
         // Verifica se a venda existe
         private bool VendaExiste(int id)
         {
-            return _context.Vendas.Any(e => e.NumeroDeSequencai == id);
+            return _context.Vendas.Any(e => e.NumeroDeSequencia == id);
         }
     }
 }
