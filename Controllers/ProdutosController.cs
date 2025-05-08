@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebPDV.Data;
 using WebPDV.Models;
 
@@ -6,11 +7,11 @@ namespace WebPDV.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProdutosController : ControllerBase
+    public class produtosController : ControllerBase
     {
         private readonly AplicacaoDbContext _context;
 
-        public ProdutosController(AplicacaoDbContext context)
+        public produtosController(AplicacaoDbContext context)
         {
             _context = context;
         }
@@ -19,14 +20,14 @@ namespace WebPDV.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Produto>>> ObterTodos()
         {
-            return Ok(await _context.Produtos.ToListAsync());
+            return Ok(await _context.produtos.ToListAsync());
         }
 
         // GET: api/produtos/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> ObterPorId(int id)
         {
-            var produto = await _context.Produtos.FindAsync(id);
+            var produto = await _context.produtos.FindAsync(id);
             if (produto == null) return NotFound();
             return Ok(produto);
         }
@@ -36,16 +37,16 @@ namespace WebPDV.Controllers
         public async Task<ActionResult<Produto>> Criar(Produto produto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            _context.Produtos.Add(produto);
+            _context.produtos.Add(produto);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = produto.Id }, produto);
+            return CreatedAtAction(nameof(ObterPorId), new { id = produto.CodigoID }, produto);
         }
 
         // PUT: api/produtos/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Produto produto)
         {
-            if (id != produto.Id) return BadRequest();
+            if (id != produto.CodigoID) return BadRequest();
             _context.Entry(produto).State = EntityState.Modified;
             try
             {
@@ -63,9 +64,9 @@ namespace WebPDV.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletar(int id)
         {
-            var produto = await _context.Produtos.FindAsync(id);
+            var produto = await _context.produtos.FindAsync(id);
             if (produto == null) return NotFound();
-            _context.Produtos.Remove(produto);
+            _context.produtos.Remove(produto);
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -73,7 +74,7 @@ namespace WebPDV.Controllers
         // Método para verificar se o produto existe.
         private bool ProdutoExiste(int id)
         {
-            return _context.Produtos.Any(e => e.Id == id);
+            return _context.produtos.Any(e => e.CodigoID == id);
         }
     }
 }

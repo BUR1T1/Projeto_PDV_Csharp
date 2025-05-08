@@ -1,0 +1,8 @@
+C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.csproj.AssemblyReference.cache
+C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.AssemblyInfoInputs.cache
+C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.AssemblyInfo.cs
+C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.csproj.CoreCompileInputs.cache
+C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.sourcelink.json
