@@ -7,11 +7,11 @@ namespace WebPDV.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class clientesController : ControllerBase
+    public class ClientesController : ControllerBase
     {
         private readonly AplicacaoDbContext _context;
 
-        public clientesController(AplicacaoDbContext context)
+        public ClientesController(AplicacaoDbContext context)
         {
             _context = context;
         }
