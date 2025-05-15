@@ -39,14 +39,14 @@ namespace WebPDV.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             _context.vendedores.Add(Vendedor);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = Vendedor.IdVendedor }, Vendedor);
+            return CreatedAtAction(nameof(ObterPorId), new { id = Vendedor.Id }, Vendedor);
         }
 
         // PUT: api/Vendedors/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Vendedor Vendedor)
         {
-            if (id != Vendedor.IdVendedor) return BadRequest();
+            if (id != Vendedor.Id) return BadRequest();
             _context.Entry(Vendedor).State = EntityState.Modified;
             try
             {
@@ -74,7 +74,7 @@ namespace WebPDV.Controllers
         // Método para verificar se o Vendedor existe.
         private bool VendedorExiste(int id)
         {
-            return _context.vendedores.Any(e => e.IdVendedor == id);
+            return _context.vendedores.Any(e => e.Id == id);
         }
     }
 }

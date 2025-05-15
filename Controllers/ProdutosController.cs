@@ -39,14 +39,14 @@ namespace WebPDV.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             _context.produtos.Add(produto);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = produto.CodigoID }, produto);
+            return CreatedAtAction(nameof(ObterPorId), new { id = produto.Id }, produto);
         }
 
         // PUT: api/produtos/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Produto produto)
         {
-            if (id != produto.CodigoID) return BadRequest();
+            if (id != produto.Id) return BadRequest();
             _context.Entry(produto).State = EntityState.Modified;
             try
             {
@@ -74,7 +74,7 @@ namespace WebPDV.Controllers
         // Método para verificar se o produto existe.
         private bool ProdutoExiste(int id)
         {
-            return _context.produtos.Any(e => e.CodigoID == id);
+            return _context.produtos.Any(e => e.Id == id);
         }
     }
 }
