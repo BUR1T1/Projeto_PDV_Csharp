@@ -33,7 +33,7 @@ namespace WebPDV.Controllers
         {
             var venda = await _context.Vendas
                 .Include(v => v.ItensDaVenda)
-                .FirstOrDefaultAsync(v => v.NumeroDeSequencia == id);
+                .FirstOrDefaultAsync(v => v.Id == id);
 
             if (venda == null)
                 return NotFound();
@@ -77,10 +77,10 @@ public async Task<ActionResult<Venda>> Criar(Venda venda)
 
     foreach (var item in venda.ItensDaVenda)
     {
-        var produto = await _context.produtos.FindAsync(item.ProdutoId);
+        var produto = await _context.produtos.FindAsync(item.Id);
 
         if (produto == null)
-            return BadRequest($"Produto com ID {item.ProdutoId} não encontrado.");
+            return BadRequest($"Produto com ID {item.Id} não encontrado.");
 
         if (produto.QuantidedeDeEstoque < item.Quantidade)
             return BadRequest($"Estoque insuficiente para o produto {produto.NomeProduto}");
@@ -88,7 +88,7 @@ public async Task<ActionResult<Venda>> Criar(Venda venda)
         // Cria o item com o produto real do banco
         var itemVenda = new Venda.ItemDaVenda
         {
-            ProdutoId = produto.CodigoID,
+            Id = produto.Id,
             Produto = produto,
             Quantidade = item.Quantidade
         };
@@ -105,14 +105,14 @@ public async Task<ActionResult<Venda>> Criar(Venda venda)
     _context.Vendas.Add(venda);
     await _context.SaveChangesAsync();
 
-    return CreatedAtAction(nameof(ObterPorId), new { id = venda.NumeroDeSequencia }, venda);
+    return CreatedAtAction(nameof(ObterPorId), new { id = venda.Id }, venda);
 }
 
         // PUT: api/vendas/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Venda venda)
         {
-            if (id != venda.NumeroDeSequencia)
+            if (id != venda.Id)
                 return BadRequest();
 
             _context.Entry(venda).State = EntityState.Modified;
@@ -149,7 +149,7 @@ public async Task<ActionResult<Venda>> Criar(Venda venda)
         // Verifica se a venda existe
         private bool VendaExiste(int id)
         {
-            return _context.Vendas.Any(e => e.NumeroDeSequencia == id);
+            return _context.Vendas.Any(e => e.Id == id);
         }
     }
 }

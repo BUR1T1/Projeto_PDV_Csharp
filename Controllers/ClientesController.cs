@@ -39,14 +39,14 @@ namespace WebPDV.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             _context.clientes.Add(cliente);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = cliente.IdCliente }, cliente);
+            return CreatedAtAction(nameof(ObterPorId), new { id = cliente.Id }, cliente);
         }
 
         // PUT: api/clientes/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Cliente cliente)
         {
-            if (id != cliente.IdCliente) return BadRequest();
+            if (id != cliente.Id) return BadRequest();
             _context.Entry(cliente).State = EntityState.Modified;
             try
             {
@@ -74,7 +74,7 @@ namespace WebPDV.Controllers
         // Método para verificar se o atendente existe.
         private bool ClienteExiste(int id)
         {
-            return _context.clientes.Any(e => e.IdCliente == id);
+            return _context.clientes.Any(e => e.Id == id);
         }
     }
 }

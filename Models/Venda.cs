@@ -4,7 +4,7 @@ namespace WebPDV.Models
 {
     public class Venda
     {
-        public int NumeroDeSequencia { get; set; } // Nome corrigido
+        public int Id { get; set; } // Nome corrigido
         public string NomeCliente { get; set; }
         public string NomeVendedor { get; set; }   
 

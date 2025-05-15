@@ -6,3 +6,46 @@ C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.csproj.CoreCo
 C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\OTAVIO CAETANO\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.sourcelink.json
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.csproj.AssemblyReference.cache
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.AssemblyInfoInputs.cache
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.AssemblyInfo.cs
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.csproj.CoreCompileInputs.cache
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\appsettings.json
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\WebPDV.exe
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\WebPDV.deps.json
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\WebPDV.runtimeconfig.json
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\WebPDV.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\WebPDV.pdb
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Humanizer.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\MySqlConnector.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\staticwebassets\msbuild.WebPDV.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\staticwebassets\msbuild.build.WebPDV.props
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.WebPDV.props
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.WebPDV.props
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\scopedcss\bundle\WebPDV.styles.css
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.csproj.CopyComplete
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\refint\WebPDV.dll
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.pdb
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\WebPDV.genruntimeconfig.cache
+C:\Users\OTAVIOCARLOSWENZELJU\Projeto_PDV_Csharp\obj\Debug\net7.0\ref\WebPDV.dll
