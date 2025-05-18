@@ -2,6 +2,8 @@ namespace WebPDV.Models{
 
     public class Produto
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int Id { get; set; }
         public string NomeProduto { get; set; }
         public string GrupoProdutos { get; set; }

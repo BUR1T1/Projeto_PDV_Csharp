@@ -4,6 +4,8 @@ namespace WebPDV.Models
 {
     public class Venda
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; } // Nome corrigido
         public string NomeCliente { get; set; }
         public string NomeVendedor { get; set; }   
@@ -17,6 +19,8 @@ namespace WebPDV.Models
         // Componete de Itens da venda, e função de calculo de valor de produtos para a soma do valor fina da venda.
         public List<ItemDaVenda> ItensDaVenda { get; set; } = new List<ItemDaVenda>();
         public class ItemDaVenda{
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]    
         public int Id { get; set; }
         public int ProdutoId { get; set; }
         public Produto Produto { get; set; }
