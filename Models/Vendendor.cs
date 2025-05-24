@@ -1,3 +1,7 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+
 namespace WebPDV.Models{
 
     public class Vendedor
