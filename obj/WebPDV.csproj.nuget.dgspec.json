@@ -1,37 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\OTAVIOCARLOSWENZELJU\\Projeto_PDV_Csharp\\WebPDV.csproj": {}
+    "C:\\Users\\OTAVIO CAETANO\\Projeto_PDV_Csharp\\WebPDV.csproj": {}
   },
   "projects": {
-    "C:\\Users\\OTAVIOCARLOSWENZELJU\\Projeto_PDV_Csharp\\WebPDV.csproj": {
+    "C:\\Users\\OTAVIO CAETANO\\Projeto_PDV_Csharp\\WebPDV.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\OTAVIOCARLOSWENZELJU\\Projeto_PDV_Csharp\\WebPDV.csproj",
+        "projectUniqueName": "C:\\Users\\OTAVIO CAETANO\\Projeto_PDV_Csharp\\WebPDV.csproj",
         "projectName": "WebPDV",
-        "projectPath": "C:\\Users\\OTAVIOCARLOSWENZELJU\\Projeto_PDV_Csharp\\WebPDV.csproj",
-        "packagesPath": "C:\\Users\\OTAVIOCARLOSWENZELJU\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\OTAVIOCARLOSWENZELJU\\Projeto_PDV_Csharp\\obj\\",
+        "projectPath": "C:\\Users\\OTAVIO CAETANO\\Projeto_PDV_Csharp\\WebPDV.csproj",
+        "packagesPath": "C:\\Users\\OTAVIO CAETANO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\OTAVIO CAETANO\\Projeto_PDV_Csharp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\OTAVIOCARLOSWENZELJU\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\OTAVIO CAETANO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -39,11 +38,16 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -66,6 +70,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -87,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
