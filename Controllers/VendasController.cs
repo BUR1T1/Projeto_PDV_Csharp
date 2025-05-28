@@ -18,77 +18,80 @@ namespace WebPDV.Controllers
 
         // GET: api/vendas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Venda>>> ObterTodas()
-        {
-            var vendas = await _context.Vendas
-                .Include(v => v.ItensDaVenda)
-                .ToListAsync();
+public async Task<ActionResult<IEnumerable<Venda>>> ObterTodas()
+{
+    var vendas = await _context.Vendas
+        .Include(v => v.ItensDaVenda)
+            .ThenInclude(i => i.Produto)  // Importante para carregar os produtos
+        .ToListAsync();
 
-            return Ok(vendas);
-        }
+    return Ok(vendas);
+}
 
         // GET: api/vendas/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Venda>> ObterPorId(int id)
-        {
-            var venda = await _context.Vendas
-                .Include(v => v.ItensDaVenda)
-                .FirstOrDefaultAsync(v => v.Id == id);
+public async Task<ActionResult<Venda>> ObterPorId(int id)
+{
+    var venda = await _context.Vendas
+        .Include(v => v.ItensDaVenda)
+            .ThenInclude(i => i.Produto)
+        .FirstOrDefaultAsync(v => v.Id == id);
 
-            if (venda == null)
-                return NotFound();
+    if (venda == null)
+        return NotFound();
 
-            return Ok(venda);
-        }
+    return Ok(venda);
+}
 
-        // POST: api/vendas
-      [HttpPost]
+[HttpPost]
 public async Task<ActionResult<Venda>> Criar(Venda venda)
 {
     if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-    var itensValidados = new List<Venda.ItemDaVenda>();
+    var itensParaAdicionar = new List<Venda.ItemDaVenda>(); 
+    decimal valorTotalDaVenda = 0; 
 
-    foreach (var item in venda.ItensDaVenda)
-    {
-        // Busca o produto pelo ProdutoId correto
-        var produto = await _context.produtos.FindAsync(item.ProdutoId);
+    foreach (var itemRecebido in venda.ItensDaVenda) 
+    { 
+        var produto = await _context.Produtos.FindAsync(itemRecebido.ProdutoId); 
 
         if (produto == null)
-            return BadRequest($"Produto com ID {item.ProdutoId} não encontrado.");
+            return BadRequest($"Produto com ID {itemRecebido.ProdutoId} não encontrado.");
 
-        if (produto.QuantidedeDeEstoque < item.Quantidade)
+        if (produto.QuantidedeDeEstoque < itemRecebido.Quantidade)
             return BadRequest($"Estoque insuficiente para o produto {produto.NomeProduto}");
 
-        // Reduz estoque diretamente no produto
-        produto.QuantidedeDeEstoque -= item.Quantidade;
+        
+        produto.QuantidedeDeEstoque -= itemRecebido.Quantidade;
 
-        // Cria um novo item de venda com dados corretos
-        var itemVenda = new Venda.ItemDaVenda
+    
+        var novoItemVenda = new Venda.ItemDaVenda 
         {
             ProdutoId = produto.Id,
-            NomeProduto = produto.NomeProduto,
-            Quantidade = item.Quantidade
+            Produto = produto, 
+            Quantidade = itemRecebido.Quantidade,
+            NomeProduto = produto.NomeProduto,     
+            ValorUnitario = produto.ValorDeVenda   
         };
+        itensParaAdicionar.Add(novoItemVenda);
 
-        itensValidados.Add(itemVenda);
-    }
+       
+        valorTotalDaVenda += novoItemVenda.Subtotal; 
+    } 
 
-    // Substitui a lista de itens da venda pelos validados
     venda.ItensDaVenda.Clear();
-    venda.ItensDaVenda.AddRange(itensValidados);
+    venda.ItensDaVenda.AddRange(itensParaAdicionar);
 
-    // Adiciona a venda ao contexto
-    _context.Vendas.Add(venda);
+ 
+    venda.ValorDaVenda = valorTotalDaVenda; 
 
-    // Salva tudo (inclui atualização de estoque)
-    await _context.SaveChangesAsync();
+    _context.Vendas.Add(venda); 
+
+    await _context.SaveChangesAsync(); 
 
     return CreatedAtAction(nameof(ObterPorId), new { id = venda.Id }, venda);
 }
-
-
         // PUT: api/vendas/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Venda venda)

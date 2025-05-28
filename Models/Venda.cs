@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace WebPDV.Models
 {
@@ -9,29 +9,44 @@ namespace WebPDV.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; } // Nome corrigido
-        public string NomeCliente { get; set; }
-        public string NomeVendedor { get; set; }   
-
-       /* public DateOnly DataDaVenda { get; set; }
-        public DateTime DataDaVendaDate { get; set; }*/
-        public string FormaDePagamento { get; set; }
-        public decimal ValorDaVenda => ItensDaVenda.Sum(item => item.Subtotal); 
-
-        
-        // Componete de Itens da venda, e função de calculo de valor de produtos para a soma do valor fina da venda.
-        public List<ItemDaVenda> ItensDaVenda { get; set; } = new List<ItemDaVenda>();
-        public class ItemDaVenda{
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]    
         public int Id { get; set; }
-        public int ProdutoId { get; set; }
-        public Produto Produto { get; set; }
-        public int Quantidade { get; set; }
-        public decimal ValorUnitario => Produto.ValorDeVenda;
-        public decimal Subtotal => ValorUnitario * Quantidade;
-}
-   
-    }
+        public string? NomeCliente { get; set; } 
+        public string? NomeVendedor { get; set; }
+        public string? FormaDePagamento { get; set; } 
 
+        [Column(TypeName = "decimal(10,2)")] 
+        public decimal ValorDaVenda { get; set; } 
+
+        public List<ItemDaVenda> ItensDaVenda { get; set; } = new List<ItemDaVenda>();
+
+     
+        public class ItemDaVenda
+        {
+            [Key]
+            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+            public int Id { get; set; }
+
+            public int ProdutoId { get; set; }
+            public Produto? Produto { get; set; }
+
+            public string? NomeProduto { get; set; } 
+            
+            [Column(TypeName = "decimal(10,2)")]
+            public decimal? ValorUnitario { get; set; } 
+
+            public int Quantidade { get; set; }
+
+            [NotMapped] 
+            public decimal Subtotal
+            {
+                get
+                {
+                    return Quantidade * (ValorUnitario ?? 0m);
+                }
+            }
+
+            public int VendaId { get; set; }
+            public Venda? Venda { get; set; }
+        }
+    }
 }

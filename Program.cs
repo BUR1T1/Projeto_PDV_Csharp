@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using WebPDV.Data;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuração do banco de dados
 builder.Services.AddDbContext<AplicacaoDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -10,10 +12,18 @@ builder.Services.AddDbContext<AplicacaoDbContext>(options =>
     )
 );
 
-// Adiciona serviços essenciais ao container
-builder.Services.AddControllers(); // Necessário para suportar controllers
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+
+// Serviços essenciais
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configuração do CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -24,19 +34,18 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Pipeline de requisições HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Aplicar a política de CORS correta
 app.UseCors("AllowAll");
 
-app.UseHttpsRedirection(); // Redireciona HTTP para HTTPS automaticamente
-
-app.UseAuthorization(); // Habilita autorização se necessário
-
-app.MapControllers(); // Mapeia os controllers automaticamente
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();

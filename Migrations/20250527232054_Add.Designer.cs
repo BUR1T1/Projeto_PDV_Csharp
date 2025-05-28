@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebPDV.Data;
 
@@ -10,9 +11,11 @@ using WebPDV.Data;
 namespace WebPDV.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    partial class AplicacaoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250527232054_Add")]
+    partial class Add
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,16 +75,16 @@ namespace WebPDV.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FormaDePagamento")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("NomeCliente")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("NomeVendedor")
+                        .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<decimal>("ValorDaVenda")
-                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 

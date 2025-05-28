@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebPDV.Data;
 
@@ -10,9 +11,11 @@ using WebPDV.Data;
 namespace WebPDV.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    partial class AplicacaoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250527204835_dnv")]
+    partial class dnv
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace WebPDV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("produtos");
                 });
 
             modelBuilder.Entity("WebPDV.Models.Venda", b =>
@@ -72,16 +75,16 @@ namespace WebPDV.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FormaDePagamento")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("NomeCliente")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("NomeVendedor")
+                        .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<decimal>("ValorDaVenda")
-                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
@@ -94,19 +97,13 @@ namespace WebPDV.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("NomeProduto")
-                        .HasColumnType("longtext");
-
                     b.Property<int>("ProdutoId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("ValorUnitario")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.Property<int>("VendaId")
+                    b.Property<int?>("VendaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -115,7 +112,7 @@ namespace WebPDV.Migrations
 
                     b.HasIndex("VendaId");
 
-                    b.ToTable("ItensDaVenda");
+                    b.ToTable("ItemDaVenda");
                 });
 
             modelBuilder.Entity("WebPDV.Models.Vendedor", b =>
@@ -141,15 +138,11 @@ namespace WebPDV.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebPDV.Models.Venda", "Venda")
+                    b.HasOne("WebPDV.Models.Venda", null)
                         .WithMany("ItensDaVenda")
-                        .HasForeignKey("VendaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VendaId");
 
                     b.Navigation("Produto");
-
-                    b.Navigation("Venda");
                 });
 
             modelBuilder.Entity("WebPDV.Models.Venda", b =>

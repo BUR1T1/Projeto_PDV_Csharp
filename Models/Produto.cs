@@ -11,7 +11,11 @@ namespace WebPDV.Models{
         public string NomeProduto { get; set; }
         public string GrupoProdutos { get; set; }
         public int QuantidedeDeEstoque { get; set; }
+       
+        [Column(TypeName = "decimal(10,2)")]
         public Decimal ValorDeCusto { get; set; }
+
+        [Column(TypeName = "decimal(10,2)")]
         public Decimal ValorDeVenda { get; set; }
     }
 }

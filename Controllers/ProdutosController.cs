@@ -16,33 +16,33 @@ namespace WebPDV.Controllers
             _context = context;
         }
 
-        // GET: api/produtos
+        // GET: api/Produtos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Produto>>> ObterTodos()
         {
-            return Ok(await _context.produtos.ToListAsync());
+            return Ok(await _context.Produtos.ToListAsync());
         }
 
-        // GET: api/produtos/{id}
+        // GET: api/Produtos/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> ObterPorId(int id)
         {
-            var produto = await _context.produtos.FindAsync(id);
+            var produto = await _context.Produtos.FindAsync(id);
             if (produto == null) return NotFound();
             return Ok(produto);
         }
 
-        // POST: api/produtos
+        // POST: api/Produtos
         [HttpPost]
         public async Task<ActionResult<Produto>> Criar(Produto produto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            _context.produtos.Add(produto);
+            _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(ObterPorId), new { id = produto.Id }, produto);
         }
 
-        // PUT: api/produtos/{id}
+        // PUT: api/Produtos/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Produto produto)
         {
@@ -60,13 +60,13 @@ namespace WebPDV.Controllers
             return NoContent();
         }
 
-        // DELETE: api/produtos/{id}
+        // DELETE: api/Produtos/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletar(int id)
         {
-            var produto = await _context.produtos.FindAsync(id);
+            var produto = await _context.Produtos.FindAsync(id);
             if (produto == null) return NotFound();
-            _context.produtos.Remove(produto);
+            _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -74,7 +74,7 @@ namespace WebPDV.Controllers
         // Método para verificar se o produto existe.
         private bool ProdutoExiste(int id)
         {
-            return _context.produtos.Any(e => e.Id == id);
+            return _context.Produtos.Any(e => e.Id == id);
         }
     }
 }
