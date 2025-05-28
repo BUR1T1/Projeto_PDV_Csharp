@@ -1,0 +1,37 @@
+html, body, #root {
+  height: 100%; /* Garante que HTML, body e o div #root ocupam a altura total da viewport */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Evita barras de rolagem indesejadas se o conteúdo for exatamente do tamanho da tela */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9fa; /* Um fundo claro e suave para o body */
+  color: #343a40; /* Cor de texto padrão */
+
+  /* PROPRIEDADES CHAVE PARA CENTRALIZAÇÃO */
+  display: flex;             /* Habilita o Flexbox */
+  justify-content: center;   /* Centraliza horizontalmente */
+  align-items: center;       /* Centraliza verticalmente */
+  min-height: 100vh;         /* Garante que o body ocupa pelo menos a altura da viewport */
+}
+
+/* Se você tem um h1 ou outros elementos fora do seu .parent no App.jsx,
+   ajuste o App.jsx ou App.css para eles, ou defina um layout para #root */
+#root {
+  display: flex; /* Para que o App.jsx (e VendaPage) sejam flex items */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Permite que o #root ocupe a largura completa do body */
+}
+
+h1 {
+  color: #0056b3;
+  margin-bottom: 20px;
+  text-align: center;
+  /* Se o h1 estiver dentro do App.jsx e você quer ele acima do VendaPage,
+     talvez o #root deva ser flex-direction: column; */
+}

@@ -1,0 +1,83 @@
+/* src/components/Header.css */
+
+/* Remova qualquer margem/padding padrão do body que possa afetar o layout */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+    
+    /* NOVO: Define o body como um contêiner flex para empilhar o header e o main */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o body ocupe a altura total da viewport */
+  }
+  
+  .header-container {
+    background-color: #282c34;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+    
+    position: fixed; /* Fixa o elemento na tela */
+    top: 0;          /* Alinha ao topo */
+    left: 0;         /* Alinha à esquerda */
+    z-index: 1000;   /* Garante que o cabeçalho fique acima de outros elementos */
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .brand-logo {
+    color: #61dafb;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-left: 25px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #61dafb;
+  }
+  
+  /* **IMPORTANTE: AJUSTE AQUI** */
+  .App main {
+      /* O padding-top deve ser maior que a altura do seu cabeçalho (ex: 50px de altura do header + 30px de espaço) */
+      padding-top: 80px; /* <--- AJUSTE ESTE VALOR COM BASE NA ALTURA REAL DO SEU HEADER */
+      padding-left: 20px;
+      padding-right: 20px;
+      
+      /* Faz o main ocupar o restante do espaço vertical disponível */
+      flex-grow: 1; 
+      box-sizing: border-box; /* Inclui padding no cálculo da altura total */
+  
+      /* Centraliza o conteúdo (o .parent do VendaPage) horizontalmente */
+      display: flex; 
+      justify-content: center; 
+      align-items: flex-start; /* Alinha o conteúdo ao topo do main */
+      width: 100%; /* Garante que o main ocupe toda a largura disponível */
+  }
