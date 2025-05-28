@@ -16,62 +16,77 @@ namespace WebPDV.Controllers
             _context = context;
         }
 
-        // GET: api/Vendedors
+        // GET: api/VendedorControllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Vendedor>>> ObterTodos()
         {
-            return Ok(await _context.vendedores.ToListAsync());
+            var vendedores = await _context.vendedores.ToListAsync();
+            return Ok(vendedores);
         }
 
-        // GET: api/Vendedors/{id}
+        // GET: api/VendedorControllers/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Vendedor>> ObterPorId(int id)
         {
-            var Vendedor = await _context.vendedores.FindAsync(id);
-            if (Vendedor == null) return NotFound();
-            return Ok(Vendedor);
+            var vendedor = await _context.vendedores.FindAsync(id);
+            if (vendedor == null)
+                return NotFound();
+
+            return Ok(vendedor);
         }
 
-        // POST: api/Vendedors
+        // POST: api/VendedorControllers
         [HttpPost]
-        public async Task<ActionResult<Vendedor>> Criar(Vendedor Vendedor)
+        public async Task<ActionResult<Vendedor>> Criar(Vendedor vendedor)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            _context.vendedores.Add(Vendedor);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _context.vendedores.Add(vendedor);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = Vendedor.Id }, Vendedor);
+
+            return CreatedAtAction(nameof(ObterPorId), new { id = vendedor.Id }, vendedor);
         }
 
-        // PUT: api/Vendedors/{id}
+        // PUT: api/VendedorControllers/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Atualizar(int id, Vendedor Vendedor)
+        public async Task<IActionResult> Atualizar(int id, Vendedor vendedor)
         {
-            if (id != Vendedor.Id) return BadRequest();
-            _context.Entry(Vendedor).State = EntityState.Modified;
+            if (id != vendedor.Id)
+                return BadRequest();
+
+            _context.Entry(vendedor).State = EntityState.Modified;
+
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VendedorExiste(id)) return NotFound();
+                if (!VendedorExiste(id))
+                    return NotFound();
+
                 throw;
             }
+
             return NoContent();
         }
 
-        // DELETE: api/Vendedors/{id}
+        // DELETE: api/VendedorControllers/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletar(int id)
         {
-            var Vendedor = await _context.vendedores.FindAsync(id);
-            if (Vendedor == null) return NotFound();
-            _context.vendedores.Remove(Vendedor);
+            var vendedor = await _context.vendedores.FindAsync(id);
+            if (vendedor == null)
+                return NotFound();
+
+            _context.vendedores.Remove(vendedor);
             await _context.SaveChangesAsync();
+
             return NoContent();
         }
 
-        // Método para verificar se o Vendedor existe.
+        // Verifica se o vendedor existe no banco
         private bool VendedorExiste(int id)
         {
             return _context.vendedores.Any(e => e.Id == id);
