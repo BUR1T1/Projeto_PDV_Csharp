@@ -1,0 +1,7 @@
+/* IMPORTANTE: Adicione um padding ao main (ou ao container principal do conteúdo) */
+/* para que o conteúdo não fique escondido atrás do cabeçalho fixo */
+.App main {
+    padding-top: 70px; /* Ajuste este valor de acordo com a altura final do seu cabeçalho */
+    padding-left: 20px;
+    padding-right: 20px;
+}
