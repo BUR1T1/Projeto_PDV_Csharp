@@ -221,9 +221,9 @@ function CadastroCliente() {
   {clientes.map(cli => (
     <tr key={cli.id}>
       <td>{cli.id}</td>
-      <td>{cli.NomeCliente}</td>
+      <td>{cli.nomeCliente}</td>
       <td>{cli.email}</td>
-      <td>{cli.Telefone}</td>
+      <td>{cli.telefone}</td>
       <td>{cli.endereco}</td>
       <td className="actions">
         <button onClick={() => handleEdit(cli.id)}>Editar</button>

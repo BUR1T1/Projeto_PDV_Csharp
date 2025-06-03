@@ -1,153 +1,279 @@
-/* src/components/CadastroCliente.css */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f4f4f4; /* Manter um fundo geral suave */
-    color: #333;
+    background-color: #f4f4f4; 
+    color: #333; 
 }
 
 .container {
-    max-width: 1200px;
-    margin: 20px auto;
-    background-color: #2c3e50; /* Cor principal do container */
+    width: 1300px;
+    margin: 20px auto; 
+    background-color: #2c3e50; 
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* Sombra mais pronunciada */
-    color: #ffffff; /* Texto branco no container principal */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); 
+    color: #ffffff;
 }
 
 h1, h2 {
-    color: #ecf0f1; /* Títulos em cinza claro para contraste */
+    color: #ecf0f1; 
     text-align: center;
     margin-bottom: 25px;
 }
 
-#clienteForm {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    align-items: flex-end;
-    margin-bottom: 40px;
-    padding: 20px;
-    border: 1px solid #34495e; /* Borda com tom de azul mais escuro */
+hr {
+    border: 0;
+    height: 1px;
+    background: #4a667f; 
+    margin: 40px 0;
+}
+
+/* Estilos do Formulário de Cadastro/Edição de Cliente */
+form {
+    background-color: #34495e; 
+    padding: 25px;
     border-radius: 8px;
-    background-color: #34495e; /* Fundo do formulário em azul mais escuro */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra leve para o formulário */
-}
-
-#clienteForm .form-group {
-    flex: 1;
-    min-width: 180px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    align-items: flex-end; 
+    justify-content: center; 
 }
 
-#clienteForm label {
-    margin-bottom: 5px;
+.form-group {
+    flex: 1; 
+    min-width: 280px; 
+    max-width: 45%;
+    display: flex;
+    flex-direction: column; 
+}
+
+/* Ajuste para o campo de endereço ocupar mais espaço */
+.form-group:nth-of-type(4) { 
+    min-width: 90%; 
+}
+
+
+.form-group label {
+    margin-bottom: 8px;
     font-weight: bold;
-    color: #ecf0f1; /* Labels em cinza claro */
+    color: #ecf0f1;
 }
 
-#clienteForm input[type="text"],
-#clienteForm input[type="email"],
-#clienteForm input[type="tel"] {
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
     padding: 10px;
-    border: 1px solid #bdc3c7; /* Borda suave */
+    border: 1px solid #bdc3c7;
     border-radius: 5px;
     font-size: 1em;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #ecf0f1; /* Fundo dos inputs em cinza claro */
-    color: #34495e; /* Texto dos inputs em azul escuro */
+    width: 100%; 
+    box-sizing: border-box; 
+    background-color: #ecf0f1;
+    color: #34495e;
 }
 
-#clienteForm button {
+.form-group input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.4);
+}
+
+/* Estilos para os botões do formulário */
+form button {
     padding: 10px 20px;
-    background-color: #3498db; /* Azul vibrante para o botão primário */
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para o botão */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 160px; 
+    height: 40px; 
+    align-self: flex-end; 
+    margin-left: 10px; 
 }
 
-#clienteForm button:hover {
-    background-color: #1a242f; /* Fundo escuro no hover */
-    transform: translateY(-2px); /* Efeito de elevação */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra maior no hover */
+form button[type="submit"] {
+    background-color: #3498db;
+    color: white;
 }
 
-#clienteForm button#cancelarEdicao {
-    background-color: #e74c3c; /* Vermelho vibrante para o botão de cancelar */
-    margin-left: 10px;
-}
-
-#clienteForm button#cancelarEdicao:hover {
-    background-color: #1a242f; /* Fundo escuro no hover */
+form button[type="submit"]:hover {
+    background-color: #2980b9;
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+form button[type="button"] { 
+    background-color: #e74c3c; 
+    color: white;
+}
+
+form button[type="button"]:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Estilos da Tabela de Clientes */
 .table-scroll-container {
-    max-height: 400px;
-    overflow-y: auto;
-    border: 1px solid #34495e; /* Borda consistente com o formulário */
+    max-height: 450px; 
+    overflow-x: auto; 
+    overflow-y: auto; 
+    background-color: #34495e; 
     border-radius: 8px;
-    background-color: #ecf0f1; /* Fundo da área de rolagem */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra para a tabela */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 }
 
-#clientesTable {
+table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 0;
+    border-collapse: collapse; 
+    margin-top: 20px;
+    background-color: #2c3e50; 
+    border-radius: 8px; 
+    overflow: hidden; 
 }
 
-#clientesTable th,
-#clientesTable td {
-    border: 1px solid #bdc3c7; /* Bordas das células suaves */
-    padding: 10px;
+table thead {
+    background-color: #1a242f; 
+    color: #ecf0f1;
+}
+
+table th, table td {
+    padding: 12px 15px;
     text-align: left;
-    color: #34495e; /* Cor do texto padrão da tabela */
-    width: 40px;
+    border-bottom: 1px solid #4a667f;
+    white-space: nowrap; 
 }
 
-#clientesTable th {
-    background-color: #2c3e50; /* Cor do cabeçalho da tabela */
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+table th:first-child, table td:first-child {
+    min-width: 50px; 
 }
 
-#clientesTable tr:nth-child(even) {
-    background-color: #f2f2f2; /* Linhas pares mais claras */
+table th:nth-child(2), table td:nth-child(2) {
+    min-width: 150px; 
 }
 
-#clientesTable tr:hover {
-    background-color: #dbe4e8; /* Cor mais clara no hover da linha */
+table th:nth-child(3), table td:nth-child(3) {
+    min-width: 200px;
 }
 
+table th:nth-child(4), table td:nth-child(4) {
+    min-width: 120px;
+}
+
+table th:nth-child(5), table td:nth-child(5) {
+    min-width: 250px;
+    white-space: normal; 
+}
+
+
+table th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+table tbody tr {
+    background-color: #2c3e50; 
+    transition: background-color 0.3s ease;
+}
+
+table tbody tr:nth-child(even) { 
+    background-color: #34495e; 
+}
+
+table tbody tr:hover {
+    background-color: #4a667f; 
+}
+
+table td {
+    color: #ecf0f1; 
+}
+
+/* Estilos para os botões dentro da tabela (Editar/Deletar) */
 .actions button {
-    background-color: #2ecc71; /* Verde vibrante para Editar */
-    color: white;
+    padding: 6px 10px;
     border: none;
-    padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
-    margin-right: 5px;
+    font-size: 0.85em;
+    margin-right: 8px; 
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .actions button:hover {
-    background-color: #1a242f; /* Fundo escuro no hover */
     transform: translateY(-1px);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.actions button.delete-btn {
-    background-color: #e74c3c; /* Vermelho vibrante para Deletar */
+.actions button:not(.delete-btn) { 
+    background-color: #2ecc71; 
+    color: white;
+}
+
+.actions button:not(.delete-btn):hover {
+    background-color: #27ae60;
+}
+
+.actions .delete-btn { 
+    background-color: #e74c3c; 
+    color: white;
+}
+
+.actions .delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Estilo para a mensagem de "Nenhum cliente cadastrado" */
+table td[colspan="6"] {
+    font-style: italic;
+    color: #bdc3c7;
+}
+
+/* Scrollbar personalizado para a tabela */
+.table-scroll-container::-webkit-scrollbar {
+    width: 8px; 
+    height: 8px; 
+}
+
+.table-scroll-container::-webkit-scrollbar-track {
+    background: #34495e;
+    border-radius: 10px;
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb {
+    background: #557596;
+    border-radius: 10px;
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #3498db;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 800px) {
+    .container {
+        width: 95%; 
+        padding: 20px;
+    }
+
+    .form-group {
+        min-width: 100%; 
+        max-width: 100%;
+    }
+
+    form button {
+        margin-left: 0;
+        margin-top: 15px; 
+        width: 100%; 
+    }
+
+    form {
+        flex-direction: column; 
+        align-items: stretch; 
+    }
 }
