@@ -2,22 +2,22 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f4f4f4; 
+    color: #333; 
 }
 
 .produtos-page-container {
     width: 1200px;
     margin: 20px auto;
-    background-color: #2c3e50;
+    background-color: #2c3e50; 
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    color: #ffffff;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); 
+    color: #ffffff; 
 }
 
 h1, h2 {
-    color: #ecf0f1;
+    color: #ecf0f1; 
     text-align: center;
     margin-bottom: 25px;
 }
@@ -25,7 +25,7 @@ h1, h2 {
 hr {
     border: 0;
     height: 1px;
-    background: #4a667f;
+    background: #4a667f; 
     margin: 40px 0;
 }
 
@@ -39,35 +39,32 @@ hr {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.produto-form-container form {
-    display: flex;
-    flex-direction: row;
-}
-
 .produto-form-container h2 {
     margin-top: 0;
+    margin-bottom: 20px; 
 }
 
-.form-content {
-    flex-wrap: wrap;
-    
-    align-items: flex-end;
+.produto-form-container form {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    align-items: flex-end; 
     justify-content: center;
 }
 
 .form-group {
+    display: flex; 
+    flex-direction: column; 
     flex: 1; 
-    flex-direction: row; 
-    align-items: center;
-    margin-bottom: 0; 
+    min-width: 180px;
+    margin-bottom: 0;
 }
 
 .form-group label {
-    margin-bottom: 0;
+    margin-bottom: 5px; 
     font-weight: bold;
     color: #ecf0f1;
-    white-space: nowrap; 
-    gap: 20px;
+    white-space: nowrap;
 }
 
 .form-group input[type="text"],
@@ -77,8 +74,8 @@ hr {
     border: 1px solid #bdc3c7;
     border-radius: 5px;
     font-size: 1em;
-    width: auto;
-    box-sizing: border-box;
+    width: 100%; 
+    box-sizing: border-box; 
     background-color: #ecf0f1;
     color: #34495e;
 }
@@ -101,7 +98,8 @@ hr {
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     min-width: 120px;
-    height: 40px;
+    height: 40px; 
+    align-self: flex-end; 
 }
 
 .btn-submit:hover {
@@ -110,13 +108,14 @@ hr {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+/* ProdutoList Styles */
 .produto-list-container {
     background-color: #34495e;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     max-height: 400px;
-    overflow-y: auto;
+    overflow-y: auto; 
 }
 
 .produto-list {
@@ -124,18 +123,18 @@ hr {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+    gap: 20px; 
+    justify-content: center; 
 }
 
 .produto-item {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center; 
     padding: 15px;
-    width: 250px;
-    min-height: 180px;
+    width: 250px; 
+    min-height: 180px; 
     border: 1px solid #4a667f;
     border-radius: 8px;
     background-color: #2c3e50;
@@ -148,6 +147,10 @@ hr {
 .produto-item:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     transform: translateY(-5px);
+}
+
+.produto-info {
+    margin-bottom: 15px; 
 }
 
 .produto-info h3 {
@@ -163,9 +166,11 @@ hr {
 }
 
 .produto-actions {
-    margin-top: 15px;
+    margin-top: auto; 
     display: flex;
     gap: 10px;
+    justify-content: center; 
+    width: 100%;
 }
 
 .produto-actions button {
@@ -176,7 +181,6 @@ hr {
     font-size: 0.9rem;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: center;
 }
 
 .produto-actions button:hover {
@@ -186,12 +190,12 @@ hr {
 }
 
 .btn-edit {
-    background-color: #2ecc71;
+    background-color: #2ecc71; 
     color: white;
 }
 
 .btn-delete {
-    background-color: #e74c3c;
+    background-color: #e74c3c; 
     color: white;
 }
 
@@ -200,4 +204,23 @@ hr {
     color: #bdc3c7;
     font-style: italic;
     margin-top: 20px;
+}
+
+
+.produto-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.produto-list-container::-webkit-scrollbar-track {
+    background: #34495e; 
+    border-radius: 10px;
+}
+
+.produto-list-container::-webkit-scrollbar-thumb {
+    background: #557596; 
+    border-radius: 10px;
+}
+
+.produto-list-container::-webkit-scrollbar-thumb:hover {
+    background: #3498db; 
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebPDV")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5eb8a7c233b241c4e1ca4a8abc1bab7b39cdfd6d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07bebf08122052cc208cc5b11a0f8da0303ec4de")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebPDV")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebPDV")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

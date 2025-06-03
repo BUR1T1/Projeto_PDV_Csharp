@@ -154,12 +154,7 @@ function VendaPage() {
         </ul>
       </div>
 
-      <div className={styles.div4}>
-        <button className={styles.button} onClick={() => window.location.href = '/'}>
-          Sair
-        </button>
-      </div>
-
+    
       <div className={styles.div5}>
         <button className={styles.button} onClick={limparVenda}>
           Limpar

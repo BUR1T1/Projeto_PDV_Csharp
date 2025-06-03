@@ -1,4 +1,3 @@
-// src/Produtos.jsx
 import React, { useState, useEffect } from "react";
 import './Produtos.css';
 
@@ -6,8 +5,9 @@ function Produtos() {
     const [produtos, setProdutos] = useState([]);
     const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
-    const API_BASE_URL = "https://localhost:5239/api/Produtos"; 
+    const API_BASE_URL = "http://localhost:5239/api/Produtos"; 
 
+    // Função para carregar produtos do backend
     const carregarProdutos = async () => {
         try {
             const response = await fetch(API_BASE_URL);
@@ -22,6 +22,7 @@ function Produtos() {
         }
     };
 
+    // useEffect para carregar os produtos assim que o componente é montado
     useEffect(() => {
         carregarProdutos();
     }, []); 
@@ -29,6 +30,7 @@ function Produtos() {
     const handleSaveProduto = async (produto) => {
         try {
             let response;
+            // Verifica se é um novo produto (id === 0) ou uma edição
             if (produto.id === 0) {
                 response = await fetch(API_BASE_URL, {
                     method: 'POST',
@@ -52,7 +54,9 @@ function Produtos() {
                 throw new Error(`Erro ao salvar produto: ${response.status} - ${errorData.title || JSON.stringify(errorData)}`);
             }
 
+            // Recarrega a lista de produtos após salvar
             carregarProdutos();
+          
             setProdutoSelecionado(null);
             alert(`Produto ${produto.id === 0 ? 'cadastrado' : 'atualizado'} com sucesso!`);
         } catch (error) {
@@ -61,10 +65,12 @@ function Produtos() {
         }
     };
 
+    // Função para editar um produto (preenche o formulário com os dados do produto)
     const handleEditProduto = (produto) => {
         setProdutoSelecionado(produto);
     };
 
+    // Função para deletar um produto
     const handleDeleteProduto = async (id) => {
         if (window.confirm("Tem certeza que deseja deletar este produto?")) {
             try {
@@ -76,6 +82,7 @@ function Produtos() {
                     throw new Error(`Erro HTTP: ${response.status}`);
                 }
 
+                // Recarrega a lista de produtos após deletar
                 carregarProdutos();
                 alert("Produto deletado com sucesso!");
             } catch (error) {
@@ -85,22 +92,26 @@ function Produtos() {
         }
     };
 
-    function ProdutoForm({ produtoParaEditar, onSave }) {
+   function ProdutoForm({ produtoParaEditar, onSave }) {
         const [produto, setProduto] = useState({
             id: 0,
-            nome: '',
-            preco: 0,
-            quantidade: 0,
+            nomeProduto: '', 
+            valorDeVenda: 0,
+            quantidedeDeEstoque: 0, 
+            grupoProdutos: '' 
         });
 
+        // Atualiza o estado do formulário quando um produto para editar é selecionado
         useEffect(() => {
             if (produtoParaEditar) {
                 setProduto(produtoParaEditar);
             } else {
-                setProduto({ id: 0, nome: '', preco: 0, quantidade: 0 });
+                // Reseta o formulário para um novo produto
+                setProduto({ id: 0, nomeProduto: '', valorDeVenda: 0, quantidedeDeEstoque: 0, grupoProdutos: '' });
             }
         }, [produtoParaEditar]);
 
+        // Lida com a mudança nos campos do formulário
         const handleChange = (e) => {
             const { name, value, type } = e.target;
             setProduto(prevProduto => ({
@@ -109,6 +120,7 @@ function Produtos() {
             }));
         };
 
+        // Lida com o envio do formulário
         const handleSubmit = async (e) => {
             e.preventDefault();
             onSave(produto);
@@ -116,40 +128,62 @@ function Produtos() {
 
         return (
             <div className="produto-form-container">
-                <h2>{produto.id === 0 ? 'Cadastrar Novo Produto' : `Editar Produto: ${produto.nome}`}</h2>
+                <h2>{produto.id === 0 ? 'Cadastrar Novo Produto' : `Editar Produto: ${produto.nomeProduto}`}</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="nome">Nome:</label>
+                        <label htmlFor="nomeProduto">Nome:</label>
                         <input
                             type="text"
-                            id="nome"
-                            name="nome"
-                            value={produto.nome}
+                            id="nomeProduto"
+                            name="nomeProduto"
+                            value={produto.nomeProduto} 
                             onChange={handleChange}
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="preco">Preço:</label>
+                        <label htmlFor="valorDeVenda">Preço de Venda:</label>
                         <input
                             type="number"
-                            id="preco"
-                            name="preco"
-                            value={produto.preco}
+                            id="valorDeVenda"
+                            name="valorDeVenda" 
+                            value={produto.valorDeVenda} 
+                            onChange={handleChange}
+                            step="0.01"
+                            required
+                        />
+                    </div>
+                     <div className="form-group">
+                        <label htmlFor="valorDeCusto">Preço de Custo:</label>
+                        <input
+                            type="number"
+                            id="valorDeCusto"
+                            name="valorDeCusto" 
+                            value={produto.valorDeCusto || 0} 
                             onChange={handleChange}
                             step="0.01"
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="quantidade">Quantidade:</label>
+                        <label htmlFor="quantidedeDeEstoque">Quantidade:</label>
                         <input
                             type="number"
-                            id="quantidade"
-                            name="quantidade"
-                            value={produto.quantidade}
+                            id="quantidedeDeEstoque"
+                            name="quantidedeDeEstoque" 
+                            value={produto.quantidedeDeEstoque} 
                             onChange={handleChange}
                             required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="grupoProdutos">Grupo de Produtos:</label>
+                        <input
+                            type="text"
+                            id="grupoProdutos"
+                            name="grupoProdutos"
+                            value={produto.grupoProdutos}
+                            onChange={handleChange}
                         />
                     </div>
                     <button type="submit" className="btn-submit">
@@ -159,7 +193,6 @@ function Produtos() {
             </div>
         );
     }
-
     function ProdutoList({ produtos, onEdit, onDelete }) {
         return (
             <div className="produto-list-container">
@@ -171,9 +204,11 @@ function Produtos() {
                         {produtos.map(produto => (
                             <li key={produto.id} className="produto-item">
                                 <div className="produto-info">
-                                    <h3>{produto.nome}</h3>
-                                    <p>Preço: R$ {produto.preco.toFixed(2)}</p>
-                                    <p>Quantidade: {produto.quantidade}</p>
+                                    <h3>{produto.nomeProduto}</h3> 
+                                    <p>Preço de Venda: R$ {Number(produto.valorDeVenda || 0).toFixed(2)}</p> 
+                                    <p>Preço de Custo: R$ {Number(produto.valorDeCusto || 0).toFixed(2)}</p> 
+                                    <p>Quantidade: {produto.quantidedeDeEstoque}</p> 
+                                    <p>Grupo: {produto.grupoProdutos || 'N/A'}</p> 
                                 </div>
                                 <div className="produto-actions">
                                     <button

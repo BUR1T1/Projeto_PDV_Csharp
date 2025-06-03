@@ -33,7 +33,6 @@ namespace WebPDV.Controllers
         [HttpPost]
         public async Task<ActionResult<Cliente>> Criar(Cliente cliente)
         {
-            // O ModelState.IsValid verificará automaticamente as DataAnnotations da classe Cliente
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -52,7 +51,6 @@ namespace WebPDV.Controllers
                 return BadRequest("O ID na URL não corresponde ao ID do cliente fornecido.");
             }
 
-            // O ModelState.IsValid também pode ser verificado aqui para validações no PUT
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -67,11 +65,11 @@ namespace WebPDV.Controllers
             {
                 if (!ClienteExiste(id))
                 {
-                    return NotFound("Cliente não encontrado para atualização.");
+                    return NotFound("CLIENTE NÃO ENCOONTRADO");
                 }
                 else
                 {
-                    throw; // Relança a exceção se não for um caso de "não encontrado"
+                    throw; 
                 }
             }
             return NoContent();
