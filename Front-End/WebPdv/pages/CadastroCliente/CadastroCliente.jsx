@@ -8,7 +8,7 @@ function CadastroCliente() {
     NomeCliente: '',
     email: '',
     Telefone: '',
-    Endereco: ''
+    endereco: ''
   });
   
 
