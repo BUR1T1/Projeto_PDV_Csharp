@@ -31,7 +31,7 @@ namespace WebPDV.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Criar(Cliente cliente)
+        public async Task<ActionResult<Cliente>> Criar(Cliente cliente)
         {
             if (!ModelState.IsValid)
             {
@@ -40,11 +40,11 @@ namespace WebPDV.Controllers
 
             _context.clientes.Add(cliente);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = cliente.Id }, new { message = "Cliente cadastrado com sucesso", data = cliente });
+            return CreatedAtAction(nameof(ObterPorId), new { id = cliente.Id }, cliente);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Atualizar(int id, Cliente cliente)
+        public async Task<IActionResult> Atualizar(int id, Cliente cliente)
         {
             if (id != cliente.Id)
             {
@@ -65,25 +65,25 @@ namespace WebPDV.Controllers
             {
                 if (!ClienteExiste(id))
                 {
-                    return NotFound("Cliente não encontrado para atualização.");
+                    return NotFound("CLIENTE NÃO ENCOONTRADO");
                 }
                 else
                 {
-                    throw;
+                    throw; 
                 }
             }
-            return Ok("Cliente editado com sucesso");
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Deletar(int id)
+        public async Task<IActionResult> Deletar(int id)
         {
             var cliente = await _context.clientes.FindAsync(id);
             if (cliente == null) return NotFound("Cliente não encontrado para exclusão.");
-
+            
             _context.clientes.Remove(cliente);
             await _context.SaveChangesAsync();
-            return Ok("Cliente deletado com sucesso");
+            return NoContent();
         }
 
         private bool ClienteExiste(int id)
