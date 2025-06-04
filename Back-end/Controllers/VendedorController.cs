@@ -9,9 +9,7 @@ namespace WebPDV.Controllers
     [Route("api/[controller]")]
     public class VendedorControllers : ControllerBase
     {
-        private readonly AplicacaoDbContext _context;
-
-        public VendedorControllers(AplicacaoDbContext context)
+        private readonly AplicacaoDbContext _context; public VendedorControllers(AplicacaoDbContext context)
         {
             _context = context;
         }
@@ -29,30 +27,25 @@ namespace WebPDV.Controllers
             var vendedor = await _context.vendedores.FindAsync(id);
             if (vendedor == null)
                 return NotFound($"Vendedor com ID {id} não foi encontrado.");
-
             return Ok(vendedor);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Vendedor>> Criar(Vendedor vendedor)
+        public async Task<ActionResult> Criar(Vendedor vendedor)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
             _context.vendedores.Add(vendedor);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(ObterPorId), new { id = vendedor.Id }, vendedor);
+            return CreatedAtAction(nameof(ObterPorId), new { id = vendedor.Id }, new { message = "Vendedor cadastrado com sucesso", data = vendedor });
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Atualizar(int id, Vendedor vendedor)
+        public async Task<ActionResult> Atualizar(int id, Vendedor vendedor)
         {
             if (id != vendedor.Id)
-                return BadRequest();
-
+                return BadRequest("O ID na URL não corresponde ao ID do vendedor fornecido.");
             _context.Entry(vendedor).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
@@ -60,25 +53,21 @@ namespace WebPDV.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!VendedorExiste(id))
-                    return NotFound($"Vendedor com ID {id} não foi encontrado.");
-
+                    return NotFound($"Vendedor com ID {id} não foi encontrado para atualização.");
                 throw;
             }
-
-            return NoContent();
+            return Ok("Vendedor atualizado com sucesso");
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Deletar(int id)
+        public async Task<ActionResult> Deletar(int id)
         {
             var vendedor = await _context.vendedores.FindAsync(id);
             if (vendedor == null)
-                return NotFound($"Vendedor com ID {id} não foi encontrado.");
-
+                return NotFound($"Vendedor com ID {id} não foi encontrado para exclusão.");
             _context.vendedores.Remove(vendedor);
             await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok("Vendedor deletado com sucesso");
         }
 
         private bool VendedorExiste(int id)

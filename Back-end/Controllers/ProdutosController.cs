@@ -36,7 +36,11 @@ namespace WebPDV.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = produto.Id }, produto);
+            return CreatedAtAction(
+                nameof(ObterPorId),
+                new { id = produto.Id },
+                new { message = "Produto cadastrado com sucesso", data = produto }
+            );
         }
 
         [HttpPut("{id}")]
@@ -53,7 +57,7 @@ namespace WebPDV.Controllers
                 if (!ProdutoExiste(id)) return NotFound($"Produto com ID {id} não foi encontrado.");
                 throw;
             }
-            return NoContent();
+            return Ok("Produto atualizado com sucesso");
         }
 
         [HttpDelete("{id}")]
@@ -63,7 +67,7 @@ namespace WebPDV.Controllers
             if (produto == null) return NotFound($"Produto com ID {id} não foi encontrado.");
             _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok("Produto deletado com sucesso");
         }
 
         private bool ProdutoExiste(int id)

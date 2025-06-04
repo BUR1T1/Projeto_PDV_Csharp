@@ -9,9 +9,7 @@ namespace WebPDV.Controllers
     [Route("api/[controller]")]
     public class ClientesController : ControllerBase
     {
-        private readonly AplicacaoDbContext _context;
-
-        public ClientesController(AplicacaoDbContext context)
+        private readonly AplicacaoDbContext _context; public ClientesController(AplicacaoDbContext context)
         {
             _context = context;
         }
@@ -40,7 +38,7 @@ namespace WebPDV.Controllers
 
             _context.clientes.Add(cliente);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = cliente.Id }, cliente);
+            return CreatedAtAction(nameof(ObterPorId), new { id = cliente.Id }, new { message = "Cliente cadastrado com sucesso", data = cliente });
         }
 
         [HttpPut("{id}")]
@@ -65,14 +63,14 @@ namespace WebPDV.Controllers
             {
                 if (!ClienteExiste(id))
                 {
-                    return NotFound("CLIENTE NÃO ENCOONTRADO");
+                    return NotFound("Cliente não encontrado para atualização.");
                 }
                 else
                 {
-                    throw; 
+                    throw;
                 }
             }
-            return NoContent();
+            return Ok("Cliente editado com sucesso");
         }
 
         [HttpDelete("{id}")]
@@ -80,10 +78,10 @@ namespace WebPDV.Controllers
         {
             var cliente = await _context.clientes.FindAsync(id);
             if (cliente == null) return NotFound("Cliente não encontrado para exclusão.");
-            
+
             _context.clientes.Remove(cliente);
             await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok("Cliente deletado com sucesso");
         }
 
         private bool ClienteExiste(int id)

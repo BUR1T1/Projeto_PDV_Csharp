@@ -147,7 +147,7 @@ function CadastroCliente() {
 
       <form id="clienteForm" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="NomeCliente">NomeCliente:</label>
+          <label htmlFor="NomeCliente">Nome Cliente:</label>
           <input
             type="text"
             id="NomeCliente"
@@ -210,7 +210,7 @@ function CadastroCliente() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NomeCliente</th>
+              <th>Nome Cliente</th>
               <th>Email</th>
               <th>Telefone</th>
               <th>Endereço</th>
