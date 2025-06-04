@@ -39,7 +39,7 @@ function CadastroVendedor() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(vendedor),
         });
-        if (response.status === 204) {
+        if (response.status === 200) {
           alert('Vendedor atualizado com sucesso!');
         } else if (response.status === 400) {
           const err = await response.json();
