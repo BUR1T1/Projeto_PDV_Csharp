@@ -9,8 +9,6 @@ namespace WebPDV.Controllers
     [Route("api/[controller]")]
     public class ProdutosController : ControllerBase
     {
-        private readonly AplicacaoDbContext _context;
-
         public ProdutosController(AplicacaoDbContext context)
         {
             _context = context;
@@ -31,18 +29,18 @@ namespace WebPDV.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Produto>> Criar(Produto produto)
+        public async Task<ActionResult> Criar(Produto produto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(ObterPorId), new { id = produto.Id }, produto);
+            return CreatedAtAction(nameof(ObterPorId), new { id = produto.Id }, new { message = "Produto cadastrado com sucesso", data = produto });
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Atualizar(int id, Produto produto)
+        public async Task<ActionResult> Atualizar(int id, Produto produto)
         {
-            if (id != produto.Id) return BadRequest();
+            if (id != produto.Id) return BadRequest("O ID na URL não corresponde ao ID do produto fornecido.");
             _context.Entry(produto).State = EntityState.Modified;
             try
             {
@@ -50,20 +48,20 @@ namespace WebPDV.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProdutoExiste(id)) return NotFound($"Produto com ID {id} não foi encontrado.");
+                if (!ProdutoExiste(id)) return NotFound($"Produto com ID {id} não foi encontrado para atualização.");
                 throw;
             }
-            return NoContent();
+            return Ok("Produto editado com sucesso");
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Deletar(int id)
+        public async Task<ActionResult> Deletar(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
-            if (produto == null) return NotFound($"Produto com ID {id} não foi encontrado.");
+            if (produto == null) return NotFound($"Produto com ID {id} não foi encontrado para exclusão.");
             _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok("Produto deletado com sucesso");
         }
 
         private bool ProdutoExiste(int id)
