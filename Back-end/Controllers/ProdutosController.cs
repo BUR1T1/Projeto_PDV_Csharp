@@ -26,7 +26,7 @@ namespace WebPDV.Controllers
         public async Task<ActionResult<Produto>> ObterPorId(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
-            if (produto == null) return NotFound();
+            if (produto == null) return NotFound($"Produto com ID {id} não foi encontrado.");
             return Ok(produto);
         }
 
@@ -50,7 +50,7 @@ namespace WebPDV.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProdutoExiste(id)) return NotFound();
+                if (!ProdutoExiste(id)) return NotFound($"Produto com ID {id} não foi encontrado.");
                 throw;
             }
             return NoContent();
@@ -60,7 +60,7 @@ namespace WebPDV.Controllers
         public async Task<IActionResult> Deletar(int id)
         {
             var produto = await _context.Produtos.FindAsync(id);
-            if (produto == null) return NotFound();
+            if (produto == null) return NotFound($"Produto com ID {id} não foi encontrado.");
             _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
             return NoContent();

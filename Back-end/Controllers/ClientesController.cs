@@ -26,7 +26,7 @@ namespace WebPDV.Controllers
         public async Task<ActionResult<Cliente>> ObterPorId(int id)
         {
             var cliente = await _context.clientes.FindAsync(id);
-            if (cliente == null) return NotFound();
+            if (cliente == null) return NotFound($"Cliente com ID {id} não foi encontrado.");
             return Ok(cliente);
         }
 

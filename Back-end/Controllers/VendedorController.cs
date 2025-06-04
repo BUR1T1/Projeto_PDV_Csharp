@@ -28,7 +28,7 @@ namespace WebPDV.Controllers
         {
             var vendedor = await _context.vendedores.FindAsync(id);
             if (vendedor == null)
-                return NotFound();
+                return NotFound($"Vendedor com ID {id} não foi encontrado.");
 
             return Ok(vendedor);
         }
@@ -60,7 +60,7 @@ namespace WebPDV.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!VendedorExiste(id))
-                    return NotFound();
+                    return NotFound($"Vendedor com ID {id} não foi encontrado.");
 
                 throw;
             }
@@ -73,7 +73,7 @@ namespace WebPDV.Controllers
         {
             var vendedor = await _context.vendedores.FindAsync(id);
             if (vendedor == null)
-                return NotFound();
+                return NotFound($"Vendedor com ID {id} não foi encontrado.");
 
             _context.vendedores.Remove(vendedor);
             await _context.SaveChangesAsync();

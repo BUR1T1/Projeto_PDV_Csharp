@@ -11,8 +11,8 @@ using WebPDV.Data;
 namespace WebPDV.Migrations
 {
     [DbContext(typeof(AplicacaoDbContext))]
-    [Migration("20250603191502_nome")]
-    partial class nome
+    [Migration("20250604152604_PdvPrimeiro")]
+    partial class PdvPrimeiro
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

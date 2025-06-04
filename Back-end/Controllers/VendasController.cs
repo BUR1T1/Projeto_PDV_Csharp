@@ -36,7 +36,7 @@ public async Task<ActionResult<Venda>> ObterPorId(int id)
         .FirstOrDefaultAsync(v => v.Id == id);
 
     if (venda == null)
-        return NotFound();
+        return NotFound($"Venda com ID {id} não foi encontrado.");
 
     return Ok(venda);
 }
@@ -105,7 +105,7 @@ public async Task<ActionResult<Venda>> Criar(Venda venda)
             catch (DbUpdateConcurrencyException)
             {
                 if (!VendaExiste(id))
-                    return NotFound();
+                    return NotFound($"Venda com ID {id} não foi encontrado.");
 
                 throw;
             }
@@ -118,7 +118,7 @@ public async Task<ActionResult<Venda>> Criar(Venda venda)
         {
             var venda = await _context.Vendas.FindAsync(id);
             if (venda == null)
-                return NotFound();
+                return NotFound($"Venda com ID {id} não foi encontrado.");
 
             _context.Vendas.Remove(venda);
             await _context.SaveChangesAsync();

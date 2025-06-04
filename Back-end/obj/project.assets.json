@@ -4091,31 +4091,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\OTAVIO CAETANO\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\otavi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Public\\Downloads\\Projeto_PDV_Csharp\\back-end\\WebPDV.csproj",
+      "projectUniqueName": "D:\\Area de Trabalho\\Developer\\Projeto_PDV_Csharp\\back-end\\WebPDV.csproj",
       "projectName": "WebPDV",
-      "projectPath": "C:\\Users\\Public\\Downloads\\Projeto_PDV_Csharp\\back-end\\WebPDV.csproj",
-      "packagesPath": "C:\\Users\\OTAVIO CAETANO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Public\\Downloads\\Projeto_PDV_Csharp\\back-end\\obj\\",
+      "projectPath": "D:\\Area de Trabalho\\Developer\\Projeto_PDV_Csharp\\back-end\\WebPDV.csproj",
+      "packagesPath": "C:\\Users\\otavi\\.nuget\\packages\\",
+      "outputPath": "D:\\Area de Trabalho\\Developer\\Projeto_PDV_Csharp\\back-end\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\OTAVIO CAETANO\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\otavi\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4195,7 +4188,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "D:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
