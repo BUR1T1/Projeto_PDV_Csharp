@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    "net7.0": {
       "Azure.Core/1.24.0": {
         "type": "package",
         "dependencies": {
@@ -4079,7 +4079,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    "net7.0": [
       "Microsoft.AspNetCore.OpenApi >= 7.0.2",
       "Microsoft.EntityFrameworkCore >= 7.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.7",
@@ -4091,36 +4091,37 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\OTAVIO CAETANO\\.nuget\\packages\\": {},
+    "C:\\Users\\OTAVIOCAETANORIBEIRO\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Public\\Downloads\\Projeto_PDV_Csharp\\back-end\\WebPDV.csproj",
+      "projectUniqueName": "C:\\Users\\OTAVIOCAETANORIBEIRO\\Projeto_PDV_Csharp\\Back-end\\WebPDV.csproj",
       "projectName": "WebPDV",
-      "projectPath": "C:\\Users\\Public\\Downloads\\Projeto_PDV_Csharp\\back-end\\WebPDV.csproj",
-      "packagesPath": "C:\\Users\\OTAVIO CAETANO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Public\\Downloads\\Projeto_PDV_Csharp\\back-end\\obj\\",
+      "projectPath": "C:\\Users\\OTAVIOCAETANORIBEIRO\\Projeto_PDV_Csharp\\Back-end\\WebPDV.csproj",
+      "packagesPath": "C:\\Users\\OTAVIOCAETANORIBEIRO\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\OTAVIOCAETANORIBEIRO\\Projeto_PDV_Csharp\\Back-end\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\OTAVIO CAETANO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\OTAVIOCAETANORIBEIRO\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "projectReferences": {}
         }
       },
@@ -4128,16 +4129,11 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net7.0": {
+        "targetAlias": "net7.0",
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
@@ -4195,7 +4191,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

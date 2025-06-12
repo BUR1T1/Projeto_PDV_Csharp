@@ -252,15 +252,13 @@ function VendasLoja() {
                       {venda.itensDaVenda.map((item) => (
                         <li key={item.id}>
                           {item.nomeProduto} ({item.quantidade}x) -{' '}
-                          {item.valorUnitario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} cada
+                          {item.valorUnitario.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} Unid.
                         </li>
                       ))}
                     </ul>
                   </td>
                   <td className="actions-cell">
-                    <button onClick={() => handleEdit(venda)} className="edit-btn">
-                      Editar
-                    </button>
+                   
                     <button onClick={() => handleDelete(venda.id)} className="delete-btn">
                       Deletar
                     </button>

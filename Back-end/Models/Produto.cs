@@ -8,7 +8,7 @@ namespace WebPDV.Models{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int Id { get; set; }
-        public string NomeProduto { get; set; }
+        public string? NomeProduto { get; set; }
         public string GrupoProdutos { get; set; }
         public int QuantidedeDeEstoque { get; set; }
        
@@ -16,6 +16,6 @@ namespace WebPDV.Models{
         public Decimal ValorDeCusto { get; set; }
 
         [Column(TypeName = "decimal(10,2)")]
-        public Decimal ValorDeVenda { get; set; }
+        public Decimal? ValorDeVenda { get; set; }
     }
 }

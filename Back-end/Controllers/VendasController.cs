@@ -21,13 +21,13 @@ public async Task<ActionResult<IEnumerable<Venda>>> ObterTodas()
 {
     var vendas = await _context.Vendas
         .Include(v => v.ItensDaVenda)
-            .ThenInclude(i => i.Produto)  
+        .ThenInclude(i => i.Produto)  
         .ToListAsync();
 
     return Ok(vendas);
 }
 
-        [HttpGet("{id}")]
+  [HttpGet("{id}")]
 public async Task<ActionResult<Venda>> ObterPorId(int id)
 {
     var venda = await _context.Vendas
@@ -40,6 +40,7 @@ public async Task<ActionResult<Venda>> ObterPorId(int id)
 
     return Ok(venda);
 }
+
 
 [HttpPost]
 public async Task<ActionResult<Venda>> Criar(Venda venda)
@@ -90,7 +91,7 @@ public async Task<ActionResult<Venda>> Criar(Venda venda)
 
     return CreatedAtAction(nameof(ObterPorId), new { id = venda.Id }, venda);
 }
-        [HttpPut("{id}")]
+       /* [HttpPut("{id}")]
         public async Task<IActionResult> Atualizar(int id, Venda venda)
         {
             if (id != venda.Id)
@@ -112,7 +113,7 @@ public async Task<ActionResult<Venda>> Criar(Venda venda)
 
             return NoContent();
         }
-
+*/
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deletar(int id)
         {

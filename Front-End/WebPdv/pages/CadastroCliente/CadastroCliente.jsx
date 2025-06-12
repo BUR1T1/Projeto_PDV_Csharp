@@ -5,9 +5,9 @@ import './CadastroCliente.css';
 function CadastroCliente() {
   const [cliente, setCliente] = useState({
     id: 0,
-    NomeCliente: '',
+    nomeCliente: '',
     email: '',
-    Telefone: '',
+    telefone: '',
     Endereco: ''
   });
   
@@ -133,9 +133,9 @@ function CadastroCliente() {
   const resetForm = () => {
     setCliente({
       id: 0,
-      NomeCliente: '',
+      nomeCliente: '',
       email: '',
-      Telefone: '',
+      telefone: '',
       endereco: ''
     });
     setIsEditing(false);
@@ -152,7 +152,7 @@ function CadastroCliente() {
             type="text"
             id="NomeCliente"
             name="NomeCliente"
-            value={cliente.NomeCliente}
+            value={cliente.nomeCliente}
             onChange={handleChange}
             required
           />
@@ -176,7 +176,7 @@ function CadastroCliente() {
             type="tel"
             id="Telefone"
             name="Telefone"
-            value={cliente.Telefone}
+            value={cliente.telefone}
             onChange={handleChange}
           />
         </div>

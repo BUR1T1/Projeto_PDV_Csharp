@@ -10,6 +10,7 @@ function VendaPage() {
   const [quantidade, setQuantidade] = useState(1);
   const [itens, setItens] = useState([]);
   const [valorTotal, setValorTotal] = useState(0);
+  const [ValorUnitario, setValorUnitario] = useState();
 
   const adicionarItem = async (e) => {
     if (e.key === 'Enter' && produtoId) {
@@ -45,6 +46,14 @@ function VendaPage() {
     setItens([]);
     setValorTotal(0);
   };
+
+  const deleteItem = (indexToRemove) => {
+    const itemRemovido = itens[indexToRemove];
+    const novosItens = itens.filter((_, index) => index !== indexToRemove);
+  
+    setItens(novosItens);
+    setValorTotal(prev => prev - itemRemovido.ValorUnitario * itemRemovido.Quantidade);
+  };  
 
   const finalizarVenda = async () => {
     if (!cliente || !vendedor || itens.length === 0) {
@@ -149,7 +158,7 @@ function VendaPage() {
           {itens.map((item, index) => (
             <li key={index} style={{ marginBottom: '4px' }}>
               {item.NomeProduto} x{item.Quantidade} = R$ {item.Subtotal}
-            </li>
+              <button className={styles.button} onClick={() => deleteItem(index)}>Remover</button></li>
           ))}
         </ul>
       </div>
